@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIAY 2HAND</title>
+    <link rel="stylesheet" href="css/layout.css">
+</head>
+<body>
+    <div >
+        <nav>
+            <div class="menu">
+            <ul>
+                <img src="images/logo.webp" alt="" height="50" width="200">
+               
+                <input type="seach" placeholder="Tìm kiếm">
+                <li><a href="cart.html">GIỎ HÀNG</a></li>
+                <li><a href="#">KHUYẾN MÃI</a>
+                        <ul>
+                            <li><a href="#">Sale 10%</a></li>
+                            <li><a href="#">Sale 20%</a></li>
+                            <li><a href="#">Sale 30%</a></li>
+                           
+                        </ul>
+                </li>
+                <li><a href="Lienhe.html">LIÊN HỆ</a></li>
+                <li><a href="Dangki.html">ĐĂNG KÍ / ĐĂNG NHẬP </a></li>
+                <li><a href="Trang chu.html">TRANG CHỦ</a></li>
+                
+            </ul>
+            </div>
+        </nav>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div>
+            <content class="hinhanh" >
+            <img src="images/bce66348-b85a-4220-a169-8a06e3518f78.webp" alt="" height="400" width="400" >
+            <aside class="noidungsp">
+                <h2 class="ten">Giày Thể Thao NIKE AIR FORCE 1 07 GS ALL WHITE Chính hãng DH2920-111</h2>
+            <p class="x">Mã sản phẩm: AF1-LOW-ALLWHITE-38.5 <br>
+                <br> 
+                𝐍𝐈𝐊𝐄 𝐀𝐈𝐑 𝐅𝐎𝐑𝐂𝐄 𝟏 𝐋𝐎𝐖 𝐖𝐇𝐈𝐓𝐄 𝟎𝟕
+                
+                - Tình trạng (condition) : Giày Mới 100% + Fullbox
+                Tùy thuộc vào môi trường xem của bạn (màn hình PC / điện thoại thông minh), màu sắc của sản phẩm thực tế có thể khác với hình ảnh. Do quá trình sản xuất giày có thể bị dính keo, may bị lệch hoặc bị móp méo nhưng đây không phải là sản phẩm lỗi.
+                <br>
+                <br>
+                         Thương hiệu: NIKE <br>
+                <br>
+                         Tình trạng: Còn hàng <br>
+            <h2 class="xs">2.990.000 đ</h2><br>
+            <label class="sizes" for=""><h3>Kích thước (size)</h3></label>
+            <select class="size" name="" id="" >
+            <option value="">35</option>
+            <option value="">36</option>
+            <option value="">37</option>
+            <option value="">38</option>
+            <option value="">39</option>
+            <option value="">40</option>
+            </select>
+            <br>
+            <br>
+            <br>
+            <button class="nut" onclick=><h3>Mua</h3> </button>
+            <button class="nut" onclick="themSP()"><h3>Thêm vào giỏ hàng</h3> </button>
+            
+            </aside>
+        </content>
+        </div>
+      <footer>
+            <div class="footer">
+                Bản quyền thuộc về Tiệm Giày Cũ Sài Gòn
+            </div>
+        </footer>
+    </div>
+    <div class="uhChat">
+        <script src="https://uhchat.net/code.php?f=e9e602"></script>
+
+    </div>
+    <footer>
+        <script>
+            if (!localStorage.getItem('cart') || JSON.parse(localStorage.getItem('cart')).length != 0) {
+                var cart = [];
+            } else {
+                var cart = localStorage.getItem('cart');
+                cart = JSON.parse(cart);
+            }
+
+            function themSP(a, b, c, d) {
+                var maSP = a;
+                var tenSP = b;
+                var giaSP = c;
+                var image = d;
+                var item = [maSP, tenSP, giaSP, image, 1];
+                var check = 0;
+                cart.forEach(el => {
+                    if (el[0] == maSP) {
+                        el[4] = (el[4] + 1);
+                        check = 1;
+                    }
+                });
+                if (check == 0) {
+                    cart.push(item);
+                }
+                localStorage.setItem('cart',JSON.stringify(cart));
+                alert("Đã thêm vào giỏ hàng");
+            }
+
+        </script>
+
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

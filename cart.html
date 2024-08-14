@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIAY 2HAND</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="css/layout.css">
+</head>
+<body>
+    <div >
+        <nav>
+            <div class="menu">
+            <ul>
+                <img src="images/logo.webp" alt="" height="50" width="200" href="layout.html">
+               
+                <input type="seach" placeholder="Tìm kiếm">
+                <li><a href="cart.html">GIỎ HÀNG</a></li>
+                <li><a href="#">KHUYẾN MÃI</a>
+                        <ul>
+                            <li><a href="#">Sale 10%</a></li>
+                            <li><a href="#">Sale 20%</a></li>
+                            <li><a href="#">Sale 30%</a></li>
+                            
+                        </ul>
+                </li>
+                <li><a href="Lienhe.html">LIÊN HỆ</a></li>
+                <li><a href="Dangki.html">ĐĂNG NHẬP / ĐĂNG KÍ</a></li>
+                <li><a href="Trang chu.html">TRANG CHỦ</a></li>
+            </ul>
+            </div>
+        </nav>
+        <h2 class="text-center">Giỏ hàng GIAY2HAND</h2>
+<div class="container"> 
+ <table id="cart" class="table table-hover table-condensed"> 
+  
+  <div class="small-container cart-page">
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+        </tr>
+        <tbody id="tbody">
+
+        </tbody>
+    </table>
+    <div class="total-price">
+        <table>
+            <tr>
+                <td>Total</td>
+                <td id="tongtien">$</td>
+            </tr>
+        </table>
+    </div>
+</div>
+   <tr> 
+    <td><a href="Trang chu.html" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a>
+    </td> 
+    <td colspan="2" class="hidden-xs"> </td> 
+    <td class="hidden-xs text-center"><strong>Tổng tiền:</strong>
+    </td> 
+    <td><a href="Trang chu.html" class="btn btn-success btn-block">Thanh toán <i class="fa fa-angle-right"></i></a>
+    </td> 
+   </tr> 
+  </tfoot> 
+ </table>
+</div>
+        <footer >
+            <div class="footer">
+                Bản quyền thuộc về Tiệm Giày Cũ Sài Gòn
+            </div>
+        </footer>
+    </div>
+ <script src="js/jquery-1.11.1.min.js"></script>
+ <script src="script.js"></script>
+ <script>
+    var cart = localStorage.getItem("cart");
+    cart = JSON.parse(cart);
+    var str = ''
+    if (localStorage.getItem('cart') && localStorage.getItem('cart') != '') {
+        var tong = 0;
+        cart.forEach(el => {
+            str += `
+            <tr>
+                <td>
+                    <div class="cart-info">
+                        <img style="margin: 20px, margin-top: 50px,margin-left:50px" height="100" width="100" src="images/`+ el[3] + `">
+                        <div>
+                            <p>`+ el[1] + `</p>
+                            <small>Price: $`+ el[2] + `</small>
+                            <br>
+                            <a href="#" onclick='remove(`+ el[0] + `)'>Remove</a>
+                        </div>
+                    </div>
+                </td>
+                <td><input type="number" value="`+ el[4] + `"></td>
+                <td>$`+ (el[4] * el[2]) + `</td>
+            </tr>
+            `;
+            tong = (tong + (el[4] * el[2]));
+        });
+        document.getElementById('tbody').innerHTML = str;
+        document.getElementById('tongtien').innerText = '$' + tong;
+    } else {
+        str +=
+            `
+            <tr colspan='3'>
+                <td>
+                    <b>Không có sản phẩm nào trong giỏ hàng</b>
+                </td>
+             </tr>
+        `;
+        document.getElementById('tbody').innerHTML = str;
+    }
+    function remove(id) {
+        var cart = JSON.parse(localStorage.getItem('cart'));
+        var idSP = id;
+        var cart2 = [];
+        cart.forEach(el => {
+            if (el[0] != idSP) {
+                cart2.push(el);
+            }
+        });
+        localStorage.setItem('cart', JSON.stringify(cart2));
+        var cart = localStorage.getItem('cart');
+        cart = JSON.parse(cart);
+        var str = '';
+        if (cart && cart.length != 0) {
+            var tong = 0;
+            cart.forEach(el => {
+                str += `
+            <tr>
+                <td>
+                    <div class="cart-info">
+                        <img src="images/image/`+ el[3] + `">
+<div>
+                            <p>`+ el[1] + `</p>
+                            <small>Price: $`+ el[2] + `</small>
+                            <br>
+                            <a href="#" onclick='remove((`+ el[0] + `))'>Remove</a>
+                        </div>
+                    </div>
+                    <br>
+                </td>
+                <td><input type="number" value="`+ el[4] + `"></td>
+                <td>$`+ (el[4] * el[2]) + `</td>                  
+            </tr>
+            `;
+                tong = (tong + (el[4] * el[2]));
+            });
+            document.getElementById('tbody').innerHTML = str;
+            document.getElementById('tongtien').innerText = '$' + tong;
+        } else {
+            str +=
+                `
+                    <tr>
+                        <td colspan='3'>
+                            <b>Không có sản phẩm nào trong giỏ hàng</b>
+                        </td>
+                    </tr>
+                    
+                `
+        }
+    }
+
+</script>
+</body>
+</html>
